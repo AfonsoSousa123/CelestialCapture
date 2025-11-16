@@ -1,0 +1,390 @@
+{
+  "edit": "Editar",
+  "login": {
+    "title": "Login de Admin",
+    "usernameLabel": "Nome de Utilizador",
+    "passwordLabel": "Palavra-passe",
+    "loginButton": "Entrar",
+    "error": "Nome de utilizador ou palavra-passe inválidos."
+  },
+  "logoutConfirm": {
+    "title": "Confirmar Saída",
+    "message": "Tem a certeza que quer terminar a sessão de administrador?",
+    "cancel": "Cancelar",
+    "logout": "Sair"
+  },
+  "header": {
+    "title": "Celestial",
+    "titleHighlight": "Capture",
+    "gallery": "Galeria",
+    "blog": "Blog",
+    "stargazing": "Observação",
+    "adminLogin": "Login Admin",
+    "logout": "Sair"
+  },
+  "hero": {
+    "subtitle": "A explorar o cosmos através da lente. Uma jornada pessoal pela astrofotografia.",
+    "exploreButton": "Explorar Galeria"
+  },
+  "search": {
+    "photoPlaceholder": "Pesquisar fotos por título ou tag..."
+  },
+  "sort": {
+    "label": "Ordenar fotos por",
+    "newest": "Mais Recentes",
+    "oldest": "Mais Antigas",
+    "rating": "Melhor Classificação",
+    "title": "Título (A-Z)"
+  },
+  "ratingFilter": {
+    "label": "Filtrar por classificação mínima:",
+    "any": "Qualquer",
+    "clear": "Limpar",
+    "clearAriaLabel": "Limpar filtro de classificação"
+  },
+  "tagFilter": {
+    "clear": "Limpar Filtros"
+  },
+  "gallery": {
+    "uploadButton": "Carregar a Sua Foto",
+    "processing": "A processar...",
+    "untitled": "Sem Título",
+    "uploadError": "Não foi possível processar o ficheiro de imagem.",
+    "invalidFileType": "Tipo de ficheiro inválido. Por favor, carregue uma imagem JPEG, PNG ou WebP.",
+    "noPhotosFound": {
+      "title": "Nenhuma Foto Encontrada",
+      "subtitle": "Tente ajustar a sua pesquisa ou os critérios de filtro para encontrar o que procura."
+    },
+    "dropzone": {
+      "title": "Arraste a imagem para carregar",
+      "subtitle": "Apenas ficheiros JPEG, PNG ou WebP são aceites."
+    }
+  },
+  "photoCard": {
+    "viewDetails": "Ver detalhes de {{title}}"
+  },
+  "photoDetail": {
+    "viewFullscreen": "Ver em ecrã inteiro",
+    "titlePlaceholder": "Introduza um título",
+    "ratingLabel": "Classificação:",
+    "descriptionPlaceholderAdmin": "Adicione uma descrição... ou gere uma com IA!",
+    "descriptionPlaceholderUser": "Sem descrição disponível.",
+    "resolution": "Resolução",
+    "fileSize": "Tamanho",
+    "aperture": "Abertura",
+    "exposure": "Exposição",
+    "generating": "A Conjurar Palavras...",
+    "generateButton": "Gerar Detalhes com IA",
+    "regenerateButton": "Regenerar Detalhes com IA",
+    "generateError": "A descrição só pode ser gerada para fotos recém-carregadas com dados de imagem válidos.",
+    "generateErrorApi": "Ocorreu um erro ao comunicar com o cosmos.",
+    "generateTooltip": "Detalhes de IA estão disponíveis apenas para fotos recém-carregadas.",
+    "addTagPlaceholder": "Adicionar uma tag e premir Enter",
+    "setFeaturedButton": "Definir como Foto da Semana",
+    "saveButton": "Guardar Alterações",
+    "undo": "Desfazer alteração",
+    "redo": "Refazer alteração",
+    "deleteButton": "Apagar foto",
+    "deleteButtonAria": "Apagar foto: {{title}}",
+    "undoAria": "Desfazer alterações em {{title}}",
+    "redoAria": "Refazer alterações em {{title}}",
+    "confirmDeleteTitle": "Confirmar Eliminação",
+    "confirmDeleteMessage": "Tem a certeza que quer apagar permanentemente \"{{title}}\"? Esta ação não pode ser desfeita.",
+    "cancelButton": "Cancelar"
+  },
+  "fullscreen": {
+    "close": "Fechar ecrã inteiro (Esc)",
+    "zoomOut": "Reduzir zoom (-)",
+    "resetZoom": "Repor zoom (0 ou R)",
+    "zoomIn": "Aumentar zoom (+)",
+    "scroll": "Scroll",
+    "toZoom": "para Zoom",
+    "arrows": "Setas",
+    "toPan": "para Mover",
+    "esc": "Esc",
+    "toClose": "para Fechar"
+  },
+  "relatedPhotos": {
+    "title": "Fotografias Relacionadas"
+  },
+  "photoOfWeek": {
+    "badge": "Foto da Semana",
+    "capturedOn": "Capturada em {{date}}"
+  },
+  "blog": {
+    "title": "Do Diário de Campo",
+    "addPostButton": "Adicionar Novo Post",
+    "searchPlaceholder": "Pesquisar artigos por título ou excerto...",
+    "readMore": "Ler Mais",
+    "noArticlesFound": "Nenhum artigo encontrado para a sua pesquisa.",
+    "noArticlesHint": "Tente uma palavra-chave diferente ou limpe a pesquisa.",
+    "inspirationTitle": "Precisa de Inspiração?",
+    "inspirationSubtitle": "Deixe a IA ajudá-lo a ter ideias para o seu próximo post de blog de astrofotografia.",
+    "generateIdeasButton": "Gerar Ideias para Blog"
+  },
+  "blogPost": {
+    "backToBlog": "Voltar ao Blog",
+    "share": "Partilhar",
+    "shareCopied": "Link Copiado!",
+    "shareError": "Erro!",
+    "editPost": "Editar Post",
+    "publishedOn": "Publicado em {{date}}"
+  },
+  "relatedPosts": {
+    "title": "Também Poderá Gostar"
+  },
+  "comments": {
+    "oneComment": "1 Comentário",
+    "multipleComments": "{{count}} Comentários",
+    "beFirst": "Seja o primeiro a deixar um comentário!",
+    "leaveComment": "Deixe um Comentário",
+    "errorRequired": "Por favor, preencha todos os campos obrigatórios.",
+    "errorEmail": "Por favor, introduza um endereço de e-mail válido.",
+    "nameLabel": "Nome",
+    "emailLabel": "Email (não será publicado)",
+    "replyLabel": "A Sua Resposta",
+    "commentLabel": "Comentário",
+    "posting": "A publicar...",
+    "postReplyButton": "Publicar Resposta",
+    "postCommentButton": "Publicar Comentário",
+    "cancel": "Cancelar",
+    "reply": "Responder"
+  },
+  "editor": {
+    "bold": "Negrito",
+    "italic": "Itálico",
+    "bulletList": "Lista com marcadores",
+    "imageLabel": "Imagem do Post",
+    "imageAlt": "Pré-visualização do post",
+    "fromUrl": "De URL",
+    "uploadImage": "Carregar Imagem",
+    "changeImage": "Alterar Imagem",
+    "chooseImage": "Escolher uma Imagem",
+    "cancel": "Cancelar",
+    "save": "Guardar Alterações"
+  },
+  "stargazing": {
+    "title": "Sob o Céu Noturno",
+    "subtitle": "O seu guia para as melhores condições de observação e fotografia celestial, dicas e truques."
+  },
+  "moon": {
+    "title": "Fase da Lua Atual",
+    "illumination": "Iluminação",
+    "nextPhase": "Próxima Fase",
+    "tonight": "esta noite",
+    "tomorrow": "amanhã",
+    "inDays": "em {{count}} dias",
+    "onDate": "a {{date}}",
+    "conditionsTitle": "Condições de Observação",
+    "stargazing": "Observação",
+    "astrophotography": "Astrofotografia",
+    "phases": [
+      "Lua Nova",
+      "Crescente Fina",
+      "Quarto Crescente",
+      "Gibosa Crescente",
+      "Lua Cheia",
+      "Gibosa Minguante",
+      "Quarto Minguante",
+      "Minguante Fina"
+    ],
+    "conditions": {
+      "newMoon": {
+        "stargazing": {
+          "rating": "Excelente",
+          "ratingKey": "excellent",
+          "description": "Céus escuros são perfeitos para avistar galáxias e nebulosas ténues."
+        },
+        "astrophotography": {
+          "rating": "Excelente (Céu Profundo)",
+          "ratingKey": "excellent",
+          "description": "Condições ideais para capturar objetos de céu profundo como a Via Láctea."
+        }
+      },
+      "crescent": {
+        "stargazing": {
+          "rating": "Bom",
+          "ratingKey": "good",
+          "description": "A lua põe-se cedo ou nasce tarde, proporcionando janelas de céu escuro."
+        },
+        "astrophotography": {
+          "rating": "Bom",
+          "ratingKey": "good",
+          "description": "Ótimo para detalhes lunares ao longo do terminador e ainda escuro o suficiente para alvos de céu profundo mais brilhantes."
+        }
+      },
+      "quarter": {
+        "stargazing": {
+          "rating": "Razoável",
+          "ratingKey": "fair",
+          "description": "A lua brilhante irá ofuscar as estrelas mais ténues."
+        },
+        "astrophotography": {
+          "rating": "Excelente (Lunar)",
+          "ratingKey": "excellent",
+          "description": "Perfeito para capturar fotos detalhadas de crateras ao longo do terminador. Desafiante para nebulosas."
+        }
+      },
+      "gibbous": {
+        "stargazing": {
+          "rating": "Fraco",
+          "ratingKey": "poor",
+          "description": "A luz da lua significativa irá esconder todas, exceto as estrelas e planetas mais brilhantes."
+        },
+        "astrophotography": {
+          "rating": "Desafiante (Céu Profundo)",
+          "ratingKey": "challenging",
+          "description": "Concentre-se em alvos brilhantes como planetas, ou fotografe a própria lua. Use filtros de banda estreita para nebulosas."
+        }
+      },
+      "fullMoon": {
+        "stargazing": {
+          "rating": "Fraco",
+          "ratingKey": "poor",
+          "description": "O céu está muito brilhante, tornando difícil ver qualquer coisa exceto a lua e os planetas mais brilhantes."
+        },
+        "astrophotography": {
+          "rating": "Lunar & Paisagem",
+          "ratingKey": "fair",
+          "description": "Difícil para céu profundo. Melhor para retratos da lua ou fotografia de paisagem iluminada pela lua."
+        }
+      }
+    }
+  },
+  "whatsUp": {
+    "title": "O Que Se Vê Esta Noite?",
+    "planets": {
+      "title": "Visibilidade dos Planetas",
+      "list": [
+        { "name": "Mercúrio", "emoji": "☿️", "status": "Difícil de ver", "location": "Muito baixo a oeste após o pôr do sol." },
+        { "name": "Vénus", "emoji": "♀️", "status": "Não visível", "location": "Atualmente muito perto do Sol." },
+        { "name": "Marte", "emoji": "♂️", "status": "Céu da manhã", "location": "Visível a leste antes do nascer do sol. Procure um ponto de luz avermelhado." },
+        { "name": "Júpiter", "emoji": "♃", "status": "Céu da noite", "location": "Brilhante e intenso no sul após o anoitecer. Impossível de não ver." },
+        { "name": "Saturno", "emoji": "♄", "status": "Céu da noite", "location": "Visível a sudeste após o anoitecer. Mais ténue que Júpiter, com tom amarelado." },
+        { "name": "Úrano", "emoji": "♅", "status": "Binóculos necessários", "location": "Perto de Júpiter, mas requer ajuda ótica para ser visto como um pequeno ponto azul-esverdeado." },
+        { "name": "Neptuno", "emoji": "♆", "status": "Telescópio necessário", "location": "Requer um telescópio e uma boa carta celeste para localizar." }
+      ]
+    },
+    "meteors": {
+      "title": "Calendário de Chuvas de Meteoros",
+      "peak": "Pico",
+      "moon": "Lua",
+      "list": [
+        { "name": "Perseidas", "peak": "12-13 Ago", "rate": "~100/h", "moon": "Crescente Fina (Favorável)" },
+        { "name": "Dracónidas", "peak": "8-9 Out", "rate": "Variável", "moon": "Crescente Fina (Favorável)" },
+        { "name": "Oriónidas", "peak": "21-22 Out", "rate": "~20/h", "moon": "Gibosa Minguante (Desfavorável)" },
+        { "name": "Leónidas", "peak": "17-18 Nov", "rate": "~15/h", "moon": "Lua Cheia (Fraco)" },
+        { "name": "Gemínidas", "peak": "13-14 Dez", "rate": "~150/h", "moon": "Minguante Fina (Excelente)" },
+        { "name": "Quadrantídeos", "peak": "3-4 Jan", "rate": "~120/h", "moon": "Minguante Fina (Excelente)" }
+      ]
+    }
+  },
+  "milkyWayGuide": {
+    "title": "Guia Personalizado da Via Láctea",
+    "prompt": "Veja quando o núcleo da Via Láctea está mais visível da sua localização.",
+    "button": "Usar a Minha Localização",
+    "loading": "A analisar o seu céu noturno...",
+    "errorTitle": "Erro",
+    "errorDenied": "O acesso à localização foi negado. Não podemos gerar um guia sem ela.",
+    "errorUnavailable": "A informação de localização não está disponível no seu dispositivo.",
+    "errorTimeout": "O pedido para obter a sua localização expirou.",
+    "errorUnknown": "Ocorreu um erro desconhecido ao obter a sua localização.",
+    "errorApi": "Não foi possível gerar um guia para a sua localização neste momento. Por favor, tente novamente mais tarde.",
+    "tryAgain": "Tentar Novamente"
+  },
+  "bortleScale": {
+    "title": "Medidor de Poluição Luminosa (Escala de Bortle)",
+    "prompt": "Estime a escuridão do seu céu local e veja o que está visível da sua localização.",
+    "button": "Estimar Qualidade do Meu Céu",
+    "loading": "A estimar a qualidade do seu céu local...",
+    "errorTitle": "Falha na Estimativa",
+    "errorApi": "Não foi possível gerar um relatório da qualidade do céu neste momento. Por favor, tente novamente mais tarde.",
+    "tryAgain": "Tentar Novamente",
+    "classLabel": "Classe de Bortle Estimada"
+  },
+  "celestialEvents": {
+    "title": "Próximos Eventos Celestiais",
+    "loading": "A vasculhar o cosmos por eventos futuros...",
+    "error": "Não foi possível obter os eventos celestiais. O cosmos está em silêncio por agora.",
+    "noEvents": "Nenhum evento celestial importante encontrado de momento. Volte mais tarde!"
+  },
+  "stargazingTips": {
+    "title": "Dicas para a Melhor Experiência",
+    "tips": [
+      { "icon": "📍", "title": "Procure Céus Escuros", "description": "Encontre um local longe das luzes da cidade. Quanto mais escuro o céu, mais verá. Use um mapa de poluição luminosa para encontrar os melhores locais perto de si." },
+      { "icon": "☁️", "title": "Verifique o Tempo", "description": "Uma noite clara e sem nuvens é essencial para uma boa observação. Verifique a previsão para a cobertura de nuvens, humidade e condições de 'seeing' atmosférico." },
+      { "icon": "👁️", "title": "Deixe os Seus Olhos Adaptarem-se", "description": "Leva cerca de 20-30 minutos para os seus olhos se adaptarem totalmente ao escuro. Evite olhar para ecrãs brilhantes. Use uma lanterna de luz vermelha para preservar a sua visão noturna." },
+      { "icon": "🔭", "title": "Use o Equipamento Certo", "description": "Binóculos são um ótimo ponto de partida para explorar a Lua e enxames estelares. Um telescópio revelará galáxias e nebulosas mais distantes." }
+    ]
+  },
+  "interactiveTelescope": {
+    "title": "Conheça o Seu Equipamento: Anatomia do Telescópio",
+    "prompt": "Passe o rato sobre uma parte do telescópio para saber mais sobre ela.",
+    "parts": {
+      "objective": { "name": "Lente / Espelho Objetivo", "description": "O elemento ótico principal. Recolhe a luz ténue de objetos distantes e foca-a. Quanto maior o diâmetro (abertura), mais brilhante e detalhada será a imagem." },
+      "tube": { "name": "Tubo Ótico", "description": "O corpo principal do telescópio. Mantém as óticas alinhadas e bloqueia a luz difusa para garantir uma imagem de alto contraste." },
+      "eyepiece": { "name": "Ocular e Focador", "description": "A ocular amplia a imagem focada pela lente objetiva. O focador move-a para obter uma visão nítida. Pode trocar de oculares para diferentes ampliações." },
+      "mount": { "name": "Montagem Equatorial e Tripé", "description": "A base do telescópio. Fornece estabilidade e permite apontar. Esta montagem equatorial foi projetada para seguir a rotação do céu com um único movimento." },
+      "finderscope": { "name": "Buscador", "description": "Um pequeno telescópio secundário montado no principal. Tem um campo de visão mais amplo, facilitando a localização de objetos antes de os ver através da ocular principal." }
+    }
+  },
+  "astrophotographyTips": {
+    "title": "Guia de Iniciação à Astrofotografia",
+    "tips": [
+      { "icon": "🗼", "title": "Use uma Montagem Robusta", "description": "Uma base estável não é negociável. Para longas exposições, um 'star tracker' ou montagem equatorial é essencial para evitar rastos de estrelas e capturar detalhes nítidos." },
+      { "icon": "🎯", "title": "Domine o Foco Manual", "description": "Use a visualização ao vivo da sua câmara, aumente o zoom numa estrela brilhante e ajuste o anel de foco até a estrela ser um ponto de luz minúsculo e nítido. Uma máscara de Bahtinov pode ajudar a atingir a perfeição." },
+      { "icon": "📁", "title": "Fotografe em RAW", "description": "Ficheiros RAW capturam todos os dados do sensor, dando-lhe a máxima flexibilidade no pós-processamento para realçar detalhes ténues e corrigir cores." },
+      { "icon": "⚙️", "title": "O Triângulo de Exposição", "description": "Use uma abertura ampla (ex: f/2.8), um ISO moderado (800-1600) e a maior velocidade do obturador que a sua montagem permite sem rastos." },
+      { "icon": "🧭", "title": "Alinhe Polarmente com Cuidado", "description": "Se usar um 'tracker', dedique tempo ao alinhamento polar. Este é o passo mais importante para obter estrelas nítidas e redondas em longas exposições." },
+      { "icon": "🗺️", "title": "Planeie a Sua Sessão", "description": "Saiba o que quer capturar antes de sair. Use aplicações como o Stellarium ou SkySafari para ver que objetos estão visíveis e planear a sua composição." },
+      { "icon": "⏱️", "title": "Use um Intervalómetro", "description": "Um disparador remoto ou intervalómetro permite-lhe tirar fotos sem tocar na câmara, evitando vibrações que podem desfocar as suas imagens." },
+      { "icon": "📚", "title": "Empilhe as Suas Imagens", "description": "Tire muitas exposições idênticas ('lights') e empilhe-as mais tarde em software como o DeepSkyStacker para reduzir o ruído e revelar detalhes ténues." }
+    ]
+  },
+  "footer": {
+    "copyright": "Celestial Capture. Todos os direitos reservados.",
+    "tagline": "A capturar a beleza do cosmos, uma imagem de cada vez."
+  },
+  "addPost": {
+    "title": "Criar Novo Post de Blog",
+    "postTitleLabel": "Título",
+    "excerptLabel": "Excerto",
+    "imageLabel": "Imagem",
+    "fromUrl": "De URL",
+    "uploadImage": "Carregar Imagem",
+    "imageUrlLabel": "URL da Imagem",
+    "changeImage": "Alterar Imagem",
+    "chooseImage": "Escolher uma Imagem",
+    "previewAlt": "Pré-visualização do post",
+    "contentLabel": "Conteúdo (HTML suportado)",
+    "errorAllFields": "Todos os campos de texto são obrigatórios.",
+    "errorImageProcess": "Não foi possível processar a imagem carregada.",
+    "errorImageRequired": "É necessária uma imagem.",
+    "cancelButton": "Cancelar",
+    "createButton": "Criar Post"
+  },
+  "prompts": {
+    "photoDescription": "É um astrofotógrafo experiente. Descreva este objeto celestial de forma cativante e informativa. Inclua detalhes sobre o que está a ser mostrado (ex: tipo de nebulosa, características da galáxia). Se possível, infira os detalhes técnicos prováveis de como foi capturado, como ISO, Abertura e tempo de Exposição, e formate-os claramente sob um cabeçalho 'Detalhes Técnicos'.",
+    "blogIdeas": "É um assistente de IA para um blog de astrofotografia. Gere 5 ideias de posts de blog criativas e envolventes. As ideias devem ser adequadas tanto para iniciantes como para entusiastas de nível intermédio. Devolva as ideias como um objeto JSON com uma única chave 'ideas' que é um array de strings.",
+    "chatbotSystemInstruction": "Você é o Cosmos, um assistente de IA amigável e conhecedor do site de astrofotografia 'Celestial Capture'. O seu objetivo é ajudar os utilizadores a aprender sobre o espaço, astronomia e astrofotografia. Responda às perguntas de forma clara e entusiástica. Pode falar sobre planetas, estrelas, galáxias, nebulosas, telescópios, equipamento de câmara e técnicas. Mantenha as suas respostas concisas e fáceis de entender. Formate as suas respostas com tags HTML simples como <p>, <ul>, <li>, e <strong> para legibilidade."
+  },
+  "chatbot": {
+    "open": "Abrir chatbot",
+    "close": "Fechar chatbot",
+    "title": "Chat Cosmos",
+    "welcome": "Olá! Eu sou o Cosmos.",
+    "welcomePrompt": "Pergunte-me sobre astrofotografia, equipamento ou objetos celestes!",
+    "inputPlaceholder": "Escreva uma mensagem..."
+  },
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Próxima",
+    "page": "Página",
+    "goToPage": "Ir para a página {{page}}"
+  },
+  "toasts": {
+    "changesSaved": "Alterações guardadas com sucesso!",
+    "photoOfWeekUpdated": "A Foto da Semana foi atualizada!",
+    "photoDeleted": "A foto \"{{title}}\" foi eliminada."
+  }
+}

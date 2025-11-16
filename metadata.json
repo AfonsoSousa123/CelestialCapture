@@ -1,0 +1,7 @@
+{
+  "name": "Celestial Capture",
+  "description": "A stunning and modern blog and gallery website for astrophotography enthusiasts. It leverages AI to generate captivating descriptions for celestial images and spark ideas for blog posts.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

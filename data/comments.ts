@@ -1,0 +1,90 @@
+import { Comment } from '../types';
+
+export const commentsData: { [key: string]: Comment[] } = {
+  'en': [
+    {
+      id: '1',
+      postId: 'choosing-first-telescope',
+      author: 'Stargazer Stan',
+      email: 'stan@example.com',
+      content: 'Great guide! I went with a Dobsonian reflector as my first scope and it was the best decision. The views of Saturn were incredible.',
+      date: '2024-01-16T10:00:00Z',
+    },
+    {
+      id: '2',
+      postId: 'choosing-first-telescope',
+      author: 'Celeste',
+      email: 'celeste@example.com',
+      content: 'Thanks for breaking this down. I was so confused about the difference between refractors and reflectors. This makes it much clearer!',
+      date: '2024-01-18T14:30:00Z',
+    },
+    {
+      id: '2.1',
+      postId: 'choosing-first-telescope',
+      author: 'Admin',
+      email: 'admin@example.com',
+      content: 'You\'re welcome, Celeste! Glad it helped. The key is that the best scope is the one you\'ll use most often.',
+      date: '2024-01-18T15:00:00Z',
+      parentId: '2',
+    },
+    {
+      id: '3',
+      postId: 'art-of-stacking-images',
+      author: 'DeepSky Dan',
+      email: 'dan@example.com',
+      content: 'Calibration frames are a game changer. I used to skip them, but once I started using darks and flats, my images improved tenfold.',
+      date: '2024-01-03T09:00:00Z',
+    },
+    {
+      id: '4',
+      postId: 'capturing-lunar-eclipse',
+      author: 'Luna Lovegood',
+      email: 'luna@example.com',
+      content: "Absolutely magical! I tried this during the last eclipse and got some amazing shots. Your settings tips were spot on.",
+      date: '2023-12-21T18:45:00Z',
+    },
+  ],
+  'pt-PT': [
+    {
+      id: '1',
+      postId: 'choosing-first-telescope',
+      author: 'Stargazer Stan',
+      email: 'stan@example.com',
+      content: 'Ótimo guia! Escolhi um refletor Dobsoniano como meu primeiro telescópio e foi a melhor decisão. As vistas de Saturno foram incríveis.',
+      date: '2024-01-16T10:00:00Z',
+    },
+    {
+      id: '2',
+      postId: 'choosing-first-telescope',
+      author: 'Celeste',
+      email: 'celeste@example.com',
+      content: 'Obrigada por simplificar isto. Estava tão confusa sobre a diferença entre refratores e refletores. Assim fica muito mais claro!',
+      date: '2024-01-18T14:30:00Z',
+    },
+    {
+      id: '2.1',
+      postId: 'choosing-first-telescope',
+      author: 'Admin',
+      email: 'admin@example.com',
+      content: 'De nada, Celeste! Fico feliz que tenha ajudado. A chave é que o melhor telescópio é aquele que se usa com mais frequência.',
+      date: '2024-01-18T15:00:00Z',
+      parentId: '2',
+    },
+    {
+      id: '3',
+      postId: 'art-of-stacking-images',
+      author: 'DeepSky Dan',
+      email: 'dan@example.com',
+      content: 'Os quadros de calibração mudam o jogo. Eu costumava ignorá-los, mas assim que comecei a usar darks e flats, as minhas imagens melhoraram dez vezes.',
+      date: '2024-01-03T09:00:00Z',
+    },
+    {
+      id: '4',
+      postId: 'capturing-lunar-eclipse',
+      author: 'Luna Lovegood',
+      email: 'luna@example.com',
+      content: "Absolutamente mágico! Tentei isto durante o último eclipse e consegui umas fotos fantásticas. As suas dicas de configuração foram perfeitas.",
+      date: '2023-12-21T18:45:00Z',
+    },
+  ]
+};

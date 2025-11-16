@@ -1,0 +1,390 @@
+{
+  "edit": "Edit",
+  "login": {
+    "title": "Admin Login",
+    "usernameLabel": "Username",
+    "passwordLabel": "Password",
+    "loginButton": "Login",
+    "error": "Invalid username or password."
+  },
+  "logoutConfirm": {
+    "title": "Confirm Logout",
+    "message": "Are you sure you want to log out of the admin session?",
+    "cancel": "Cancel",
+    "logout": "Logout"
+  },
+  "header": {
+    "title": "Celestial",
+    "titleHighlight": "Capture",
+    "gallery": "Gallery",
+    "blog": "Blog",
+    "stargazing": "Stargazing",
+    "adminLogin": "Admin Login",
+    "logout": "Logout"
+  },
+  "hero": {
+    "subtitle": "Exploring the cosmos through the lens. A personal journey into astrophotography.",
+    "exploreButton": "Explore Gallery"
+  },
+  "search": {
+    "photoPlaceholder": "Search photos by title or tag..."
+  },
+  "sort": {
+    "label": "Sort photos by",
+    "newest": "Newest First",
+    "oldest": "Oldest First",
+    "rating": "Highest Rated",
+    "title": "Title (A-Z)"
+  },
+  "ratingFilter": {
+    "label": "Filter by minimum rating:",
+    "any": "Any",
+    "clear": "Clear",
+    "clearAriaLabel": "Clear rating filter"
+  },
+  "tagFilter": {
+    "clear": "Clear Filters"
+  },
+  "gallery": {
+    "uploadButton": "Upload Your Photo",
+    "processing": "Processing...",
+    "untitled": "Untitled",
+    "uploadError": "Could not process the image file.",
+    "invalidFileType": "Invalid file type. Please upload a JPEG, PNG, or WebP image.",
+    "noPhotosFound": {
+      "title": "No Photos Found",
+      "subtitle": "Try adjusting your search or filter criteria to find what you're looking for."
+    },
+    "dropzone": {
+      "title": "Drop image to upload",
+      "subtitle": "Only JPEG, PNG, or WebP files are accepted."
+    }
+  },
+  "photoCard": {
+    "viewDetails": "View details for {{title}}"
+  },
+  "photoDetail": {
+    "viewFullscreen": "View fullscreen",
+    "titlePlaceholder": "Enter a title",
+    "ratingLabel": "Rating:",
+    "descriptionPlaceholderAdmin": "Add a description... or generate one with AI!",
+    "descriptionPlaceholderUser": "No description available.",
+    "resolution": "Resolution",
+    "fileSize": "File Size",
+    "aperture": "Aperture",
+    "exposure": "Exposure",
+    "generating": "Conjuring Words...",
+    "generateButton": "Generate AI Details",
+    "regenerateButton": "Regenerate AI Details",
+    "generateError": "Description can only be generated for newly uploaded photos with valid image data.",
+    "generateErrorApi": "An error occurred while communicating with the cosmos.",
+    "generateTooltip": "AI Details are only available for newly uploaded photos.",
+    "addTagPlaceholder": "Add a tag and press Enter",
+    "setFeaturedButton": "Set as Photo of the Week",
+    "saveButton": "Save Changes",
+    "undo": "Undo change",
+    "redo": "Redo change",
+    "deleteButton": "Delete photo",
+    "deleteButtonAria": "Delete photo: {{title}}",
+    "undoAria": "Undo changes to {{title}}",
+    "redoAria": "Redo changes to {{title}}",
+    "confirmDeleteTitle": "Confirm Deletion",
+    "confirmDeleteMessage": "Are you sure you want to permanently delete \"{{title}}\"? This action cannot be undone.",
+    "cancelButton": "Cancel"
+  },
+  "fullscreen": {
+    "close": "Close fullscreen view (Esc)",
+    "zoomOut": "Zoom out (-)",
+    "resetZoom": "Reset zoom (0 or R)",
+    "zoomIn": "Zoom in (+)",
+    "scroll": "Scroll",
+    "toZoom": "to Zoom",
+    "arrows": "Arrows",
+    "toPan": "to Pan",
+    "esc": "Esc",
+    "toClose": "to Close"
+  },
+  "relatedPhotos": {
+    "title": "Related Photos"
+  },
+  "photoOfWeek": {
+    "badge": "Photo of the Week",
+    "capturedOn": "Captured on {{date}}"
+  },
+  "blog": {
+    "title": "From the Field Journal",
+    "addPostButton": "Add New Post",
+    "searchPlaceholder": "Search articles by title or excerpt...",
+    "readMore": "Read More",
+    "noArticlesFound": "No articles found matching your search.",
+    "noArticlesHint": "Try a different keyword or clear the search.",
+    "inspirationTitle": "Need Inspiration?",
+    "inspirationSubtitle": "Let AI help you brainstorm your next astrophotography blog post.",
+    "generateIdeasButton": "Generate Blog Ideas"
+  },
+  "blogPost": {
+    "backToBlog": "Back to Blog",
+    "share": "Share",
+    "shareCopied": "Link Copied!",
+    "shareError": "Error!",
+    "editPost": "Edit Post",
+    "publishedOn": "Published on {{date}}"
+  },
+  "relatedPosts": {
+    "title": "You Might Also Like"
+  },
+  "comments": {
+    "oneComment": "1 Comment",
+    "multipleComments": "{{count}} Comments",
+    "beFirst": "Be the first to leave a comment!",
+    "leaveComment": "Leave a Comment",
+    "errorRequired": "Please fill out all required fields.",
+    "errorEmail": "Please enter a valid email address.",
+    "nameLabel": "Name",
+    "emailLabel": "Email (not published)",
+    "replyLabel": "Your Reply",
+    "commentLabel": "Comment",
+    "posting": "Posting...",
+    "postReplyButton": "Post Reply",
+    "postCommentButton": "Post Comment",
+    "cancel": "Cancel",
+    "reply": "Reply"
+  },
+  "editor": {
+    "bold": "Bold",
+    "italic": "Italic",
+    "bulletList": "Bulleted List",
+    "imageLabel": "Post Image",
+    "imageAlt": "Current post",
+    "fromUrl": "From URL",
+    "uploadImage": "Upload Image",
+    "changeImage": "Change Image",
+    "chooseImage": "Choose an Image",
+    "cancel": "Cancel",
+    "save": "Save Changes"
+  },
+  "stargazing": {
+    "title": "Under the Night Sky",
+    "subtitle": "Your guide to the best celestial viewing and photography conditions, tips, and tricks."
+  },
+  "moon": {
+    "title": "Current Moon Phase",
+    "illumination": "Illumination",
+    "nextPhase": "Next Phase",
+    "tonight": "tonight",
+    "tomorrow": "tomorrow",
+    "inDays": "in {{count}} days",
+    "onDate": "on {{date}}",
+    "conditionsTitle": "Viewing Conditions",
+    "stargazing": "Stargazing",
+    "astrophotography": "Astrophotography",
+    "phases": [
+      "New Moon",
+      "Waxing Crescent",
+      "First Quarter",
+      "Waxing Gibbous",
+      "Full Moon",
+      "Waning Gibbous",
+      "Last Quarter",
+      "Waning Crescent"
+    ],
+    "conditions": {
+      "newMoon": {
+        "stargazing": {
+          "rating": "Excellent",
+          "ratingKey": "excellent",
+          "description": "Dark skies are perfect for spotting faint galaxies and nebulae."
+        },
+        "astrophotography": {
+          "rating": "Excellent (Deep Sky)",
+          "ratingKey": "excellent",
+          "description": "Ideal conditions for capturing deep-sky objects like the Milky Way."
+        }
+      },
+      "crescent": {
+        "stargazing": {
+          "rating": "Good",
+          "ratingKey": "good",
+          "description": "The moon sets early or rises late, providing dark sky windows."
+        },
+        "astrophotography": {
+          "rating": "Good",
+          "ratingKey": "good",
+          "description": "Great for lunar details along the terminator and still dark enough for brighter deep-sky targets."
+        }
+      },
+      "quarter": {
+        "stargazing": {
+          "rating": "Fair",
+          "ratingKey": "fair",
+          "description": "The bright moon will wash out fainter stars."
+        },
+        "astrophotography": {
+          "rating": "Excellent (Lunar)",
+          "ratingKey": "excellent",
+          "description": "Perfect for capturing detailed crater shots along the terminator. Challenging for nebulae."
+        }
+      },
+      "gibbous": {
+        "stargazing": {
+          "rating": "Poor",
+          "ratingKey": "poor",
+          "description": "Significant moonlight will hide all but the brightest stars and planets."
+        },
+        "astrophotography": {
+          "rating": "Challenging (Deep Sky)",
+          "ratingKey": "challenging",
+          "description": "Focus on bright targets like planets, or shoot the moon itself. Use narrowband filters for nebulae."
+        }
+      },
+      "fullMoon": {
+        "stargazing": {
+          "rating": "Poor",
+          "ratingKey": "poor",
+          "description": "The sky is very bright, making it hard to see anything but the moon and brightest planets."
+        },
+        "astrophotography": {
+          "rating": "Lunar & Landscape",
+          "ratingKey": "fair",
+          "description": "Difficult for deep-sky. Best for moon portraits or moonlit landscape photography."
+        }
+      }
+    }
+  },
+  "whatsUp": {
+    "title": "What's Up Tonight?",
+    "planets": {
+      "title": "Planet Visibility",
+      "list": [
+        { "name": "Mercury", "emoji": "☿️", "status": "Difficult to see", "location": "Very low in the west after sunset." },
+        { "name": "Venus", "emoji": "♀️", "status": "Not Visible", "location": "Currently too close to the Sun." },
+        { "name": "Mars", "emoji": "♂️", "status": "Morning Sky", "location": "Visible in the east before sunrise. Look for a reddish point of light." },
+        { "name": "Jupiter", "emoji": "♃", "status": "Evening Sky", "location": "Brilliant and bright in the south after dusk. Impossible to miss." },
+        { "name": "Saturn", "emoji": "♄", "status": "Evening Sky", "location": "Visible in the southeast after dusk. Fainter than Jupiter, with a yellowish hue." },
+        { "name": "Uranus", "emoji": "♅", "status": "Binoculars Needed", "location": "Near Jupiter, but requires optical aid to be seen as a tiny blue-green dot." },
+        { "name": "Neptune", "emoji": "♆", "status": "Telescope Needed", "location": "Requires a telescope and a good star chart to locate." }
+      ]
+    },
+    "meteors": {
+      "title": "Meteor Shower Calendar",
+      "peak": "Peak",
+      "moon": "Moon",
+      "list": [
+        { "name": "Perseids", "peak": "Aug 12-13", "rate": "~100/hr", "moon": "Waxing Crescent (Favorable)" },
+        { "name": "Draconids", "peak": "Oct 8-9", "rate": "Variable", "moon": "Waxing Crescent (Favorable)" },
+        { "name": "Orionids", "peak": "Oct 21-22", "rate": "~20/hr", "moon": "Waning Gibbous (Unfavorable)" },
+        { "name": "Leonids", "peak": "Nov 17-18", "rate": "~15/hr", "moon": "Full Moon (Poor)" },
+        { "name": "Geminids", "peak": "Dec 13-14", "rate": "~150/hr", "moon": "Waning Crescent (Excellent)" },
+        { "name": "Quadrantids", "peak": "Jan 3-4", "rate": "~120/hr", "moon": "Waning Crescent (Excellent)" }
+      ]
+    }
+  },
+  "milkyWayGuide": {
+    "title": "Personalized Milky Way Guide",
+    "prompt": "See when the Milky Way's core is most visible from your location.",
+    "button": "Use My Location",
+    "loading": "Analyzing your night sky...",
+    "errorTitle": "Error",
+    "errorDenied": "Location access was denied. We can't generate a guide without it.",
+    "errorUnavailable": "Location information is unavailable from your device.",
+    "errorTimeout": "The request to get your location timed out.",
+    "errorUnknown": "An unknown error occurred while getting your location.",
+    "errorApi": "Could not generate a guide for your location at this time. Please try again later.",
+    "tryAgain": "Try Again"
+  },
+  "bortleScale": {
+    "title": "Light Pollution Meter (Bortle Scale)",
+    "prompt": "Estimate your local sky darkness and see what's visible from your location.",
+    "button": "Estimate My Sky Quality",
+    "loading": "Estimating your local sky quality...",
+    "errorTitle": "Estimation Failed",
+    "errorApi": "Could not generate a sky quality report at this time. Please try again later.",
+    "tryAgain": "Try Again",
+    "classLabel": "Estimated Bortle Class"
+  },
+  "celestialEvents": {
+    "title": "Upcoming Celestial Events",
+    "loading": "Scanning the cosmos for upcoming events...",
+    "error": "Could not fetch celestial events. The cosmos is silent for now.",
+    "noEvents": "No major celestial events found at this time. Check back later!"
+  },
+  "stargazingTips": {
+    "title": "Tips for the Best Experience",
+    "tips": [
+      { "icon": "📍", "title": "Seek Dark Skies", "description": "Find a location away from city lights. The darker the sky, the more you will see. Use a light pollution map to find the best spots near you." },
+      { "icon": "☁️", "title": "Check the Weather", "description": "A clear, cloudless night is essential for good viewing. Check the forecast for cloud cover, humidity, and atmospheric seeing conditions." },
+      { "icon": "👁️", "title": "Let Your Eyes Adapt", "description": "It takes about 20-30 minutes for your eyes to fully adapt to the dark. Avoid looking at bright screens. Use a red flashlight to preserve your night vision." },
+      { "icon": "🔭", "title": "Use the Right Gear", "description": "Binoculars are a great starting point for exploring the Moon and star clusters. A telescope will reveal more distant galaxies and nebulae." }
+    ]
+  },
+  "interactiveTelescope": {
+    "title": "Know Your Gear: Telescope Anatomy",
+    "prompt": "Hover over a part of the telescope to learn about it.",
+    "parts": {
+      "objective": { "name": "Objective Lens / Mirror", "description": "The primary optical element. It gathers the faint light from distant objects and focuses it. The larger the diameter (aperture), the brighter and more detailed the image will be." },
+      "tube": { "name": "Optical Tube", "description": "The main body of the telescope. It holds the optics in alignment and blocks out stray light to ensure a high-contrast image." },
+      "eyepiece": { "name": "Eyepiece & Focuser", "description": "The eyepiece magnifies the focused image from the objective lens. The focuser moves it to achieve a sharp view. You can change eyepieces for different magnifications." },
+      "mount": { "name": "Equatorial Mount & Tripod", "description": "The foundation of the telescope. It provides stability and allows aiming. This equatorial mount is designed to follow the rotation of the sky with a single motion." },
+      "finderscope": { "name": "Finderscope", "description": "A small, secondary telescope mounted on the main scope. It has a wider field of view, making it easier to locate objects before viewing them through the main eyepiece." }
+    }
+  },
+  "astrophotographyTips": {
+    "title": "Astrophotography Starter Guide",
+    "tips": [
+      { "icon": "🗼", "title": "Use a Sturdy Mount", "description": "A stable base is non-negotiable. For long exposures, a star tracker or equatorial mount is essential to prevent star trails and capture sharp details." },
+      { "icon": "🎯", "title": "Master Manual Focus", "description": "Use your camera's live view, zoom in on a bright star, and adjust the focus ring until the star is a tiny, sharp point of light. A Bahtinov mask can help achieve perfection." },
+      { "icon": "📁", "title": "Shoot in RAW", "description": "RAW files capture all the sensor data, giving you maximum flexibility in post-processing to bring out faint details and correct colors." },
+      { "icon": "⚙️", "title": "The Exposure Triangle", "description": "Use a wide aperture (e.g., f/2.8), a moderate ISO (800-1600), and the longest shutter speed your mount allows without trails." },
+      { "icon": "🧭", "title": "Polar Align Carefully", "description": "If using a tracker, take your time with polar alignment. This is the most important step for getting sharp, round stars in long exposures." },
+      { "icon": "🗺️", "title": "Plan Your Shoot", "description": "Know what you want to capture before you go out. Use apps like Stellarium or SkySafari to see what objects are visible and plan your composition." },
+      { "icon": "⏱️", "title": "Use an Intervalometer", "description": "A remote shutter or intervalometer lets you take photos without touching the camera, preventing vibrations that can blur your images." },
+      { "icon": "📚", "title": "Stack Your Images", "description": "Take many identical exposures ('lights') and stack them later in software like DeepSkyStacker to reduce noise and reveal faint details." }
+    ]
+  },
+  "footer": {
+    "copyright": "Celestial Capture. All rights reserved.",
+    "tagline": "Capturing the beauty of the cosmos, one frame at a time."
+  },
+  "addPost": {
+    "title": "Create New Blog Post",
+    "postTitleLabel": "Title",
+    "excerptLabel": "Excerpt",
+    "imageLabel": "Image",
+    "fromUrl": "From URL",
+    "uploadImage": "Upload Image",
+    "imageUrlLabel": "Image URL",
+    "changeImage": "Change Image",
+    "chooseImage": "Choose an Image",
+    "previewAlt": "Post preview",
+    "contentLabel": "Content (HTML supported)",
+    "errorAllFields": "All text fields are required.",
+    "errorImageProcess": "Could not process the uploaded image.",
+    "errorImageRequired": "An image is required.",
+    "cancelButton": "Cancel",
+    "createButton": "Create Post"
+  },
+  "prompts": {
+    "photoDescription": "You are an expert astrophotographer. Describe this celestial object in a captivating and informative way. Include details about what is being shown (e.g., type of nebula, galaxy features). If possible, infer the likely technical details of how it was captured, such as ISO, Aperture, and Exposure time, and format them clearly under a 'Technical Details' heading.",
+    "blogIdeas": "You are an AI assistant for an astrophotography blog. Generate 5 creative and engaging blog post ideas. The ideas should be suitable for both beginners and intermediate enthusiasts. Return the ideas as a JSON object with a single key 'ideas' which is an array of strings.",
+    "chatbotSystemInstruction": "You are Cosmos, a friendly and knowledgeable AI assistant for the 'Celestial Capture' astrophotography website. Your goal is to help users learn about space, astronomy, and astrophotography. Answer questions clearly and enthusiastically. You can talk about planets, stars, galaxies, nebulae, telescopes, camera gear, and techniques. Keep your answers concise and easy to understand. Format your responses with simple HTML tags like <p>, <ul>, <li>, and <strong> for readability."
+  },
+  "chatbot": {
+    "open": "Open Chatbot",
+    "close": "Close Chatbot",
+    "title": "Cosmos Chat",
+    "welcome": "Hi! I'm Cosmos.",
+    "welcomePrompt": "Ask me about astrophotography, gear, or celestial objects!",
+    "inputPlaceholder": "Type a message..."
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "goToPage": "Go to page {{page}}"
+  },
+  "toasts": {
+    "changesSaved": "Changes saved successfully!",
+    "photoOfWeekUpdated": "Photo of the Week has been updated!",
+    "photoDeleted": "Photo \"{{title}}\" has been deleted."
+  }
+}
