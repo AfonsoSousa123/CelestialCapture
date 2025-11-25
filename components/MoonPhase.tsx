@@ -4,42 +4,62 @@ import { useLocale } from '../contexts/LocaleContext';
 
 const MoonVisualizer: React.FC<{ phase: number }> = ({ phase }) => {
     const radius = 50;
-    const diameter = 2 * radius;
-    const center = radius;
 
-    let path;
-    const x = center + radius * Math.cos(2 * Math.PI * (phase - 0.5));
-    const sweepFlag = phase > 0.5 ? 0 : 1;
+    // Normalize phase to [0, 1]
+    const p = phase - Math.floor(phase);
 
-    if (phase === 0) {
-        path = `M ${center},0 A ${radius},${radius} 0 1,1 ${center},${diameter} A ${radius},${radius} 0 1,1 ${center},0 Z`;
-    } else if (phase === 0.5) {
-        path = `M ${center},0 A ${radius},${radius} 0 1,0 ${center},${diameter} A ${radius},${radius} 0 1,0 ${center},0 Z`;
-    } else if (phase < 0.5) {
-        path = `M ${center},0 A ${radius},${radius} 0 1,1 ${center},${diameter} A ${x},${radius} 0 0,${sweepFlag} ${center},0 Z`;
-    } else {
-        path = `M ${center},0 A ${radius},${radius} 0 1,0 ${center},${diameter} A ${x},${radius} 0 0,${sweepFlag} ${center},0 Z`;
-    }
+    // Determine Waxing (0-0.5) or Waning (0.5-1)
+    const isWaxing = p <= 0.5;
+
+    // Determine Crescent (0-0.25 or 0.75-1) or Gibbous (0.25-0.75)
+    const isCrescent = (p < 0.25) || (p > 0.75);
+
+    // Calculate the semi-minor axis for the ellipse (0 to radius)
+    // At quarter phases (0.25, 0.75), cos is 0, so rx is 0 (straight line terminator).
+    // At new/full phases (0, 0.5, 1), cos is 1, so rx is radius.
+    const rx = radius * Math.abs(Math.cos(2 * Math.PI * p));
 
     return (
         <svg viewBox="0 0 100 100" className="w-48 h-48 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
             <defs>
                 <pattern id="dark-surface" patternUnits="userSpaceOnUse" width="100" height="100">
-                    <rect width="100" height="100" fill="#374151" />
-                    <circle cx="25" cy="30" r="8" fill="#2d3748" opacity="0.6" />
-                    <circle cx="65" cy="70" r="12" fill="#2d3748" opacity="0.6" />
+                    <rect width="100" height="100" fill="#1f2937" />
+                    <circle cx="25" cy="30" r="8" fill="#111827" opacity="0.5" />
+                    <circle cx="65" cy="70" r="12" fill="#111827" opacity="0.5" />
                 </pattern>
                 <pattern id="light-surface" patternUnits="userSpaceOnUse" width="100" height="100">
                     <rect width="100" height="100" fill="#E5E7EB" />
                     <circle cx="25" cy="30" r="8" fill="#d1d5db" opacity="0.7" />
                     <circle cx="65" cy="70" r="12" fill="#d1d5db" opacity="0.7" />
                 </pattern>
-                <mask id="moon-mask">
-                    <path fill="white" d={path}></path>
-                </mask>
             </defs>
-            <circle cx="50" cy="50" r="49.5" fill="url(#dark-surface)" />
-            <circle cx="50" cy="50" r="50" fill="url(#light-surface)" mask="url(#moon-mask)"></circle>
+
+            {/* 1. Base Dark Circle */}
+            <circle cx="50" cy="50" r="50" fill="url(#dark-surface)" />
+
+            {/* 2. Light Semi-Circle */}
+            {/* Waxing: Right side (M 50 0 ... 50 100) */}
+            {/* Waning: Left side (M 50 100 ... 50 0) */}
+            <path
+                d={isWaxing ? "M 50 0 A 50 50 0 0 1 50 100 Z" : "M 50 100 A 50 50 0 0 1 50 0 Z"}
+                fill="url(#light-surface)"
+                stroke="none"
+            />
+
+            {/* 3. Terminator Ellipse Correction */}
+            {/*
+               Crescent: We have a light semi-circle, but need to cover the inner part with Dark to make it a crescent.
+               Gibbous: We have a light semi-circle, and need to add Light to the other side to make it bulging.
+            */}
+            <ellipse
+                cx="50"
+                cy="50"
+                rx={rx}
+                ry="50"
+                fill={isCrescent ? "url(#dark-surface)" : "url(#light-surface)"}
+            />
+
+            {/* Outer Glow/Ring */}
             <circle cx="50" cy="50" r="50" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"></circle>
         </svg>
     );
@@ -67,11 +87,15 @@ const MoonPhase: React.FC = () => {
     const [nextPhaseInfo, setNextPhaseInfo] = useState(() => getNextMajorPhase(new Date(), t));
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        const updateMoonData = () => {
             const now = new Date();
             setMoonInfo(getMoonPhase(now, t));
             setNextPhaseInfo(getNextMajorPhase(now, t));
-        }, 60000);
+        };
+
+        updateMoonData(); // Update immediately on mount or locale change
+
+        const interval = setInterval(updateMoonData, 60000);
         return () => clearInterval(interval);
     }, [t]);
 
@@ -87,26 +111,26 @@ const MoonPhase: React.FC = () => {
             description: t(`moon.conditions.${moonInfo.ratingKey}.astrophotography.description`)
         }
     };
-    
+
     const formatNextPhaseDate = (date: Date) => {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         const tomorrow = new Date(today);
         tomorrow.setDate(today.getDate() + 1);
-        
+
         const targetDate = new Date(date);
         targetDate.setHours(0, 0, 0, 0);
 
-        const diffTime = targetDate.getTime() - today.getTime();
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const diffTime = targetDate.getTime() - today.getTime(); // Difference in milliseconds
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Difference in days
 
         if (targetDate.getTime() === today.getTime()) return t('moon.tonight');
         if (targetDate.getTime() === tomorrow.getTime()) return t('moon.tomorrow');
-        
+
         if (diffDays > 1 && diffDays <= 7) {
             return t('moon.inDays', { count: diffDays });
         }
-        
+
         return t('moon.onDate', { date: date.toLocaleDateString(locale, { month: 'short', day: 'numeric' }) });
     };
 
