@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode, useCallback, useEffect } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useCallback } from 'react';
 import enData from '../locales/en.json';
 import ptData from '../locales/pt-PT.json';
 
@@ -8,7 +8,7 @@ type Translations = Record<string, any>;
 interface LocaleContextType {
     locale: Locale;
     setLocale: (locale: Locale) => void;
-    t: (key: string, replacements?: Record<string, string | number>) => string;
+    t: (key: string, replacements?: Record<string, string | number>) => any;
 }
 
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
@@ -27,19 +27,19 @@ const getInitialLocale = (): Locale => {
     return 'en';
 };
 
-const getNestedTranslation = (obj: Translations | undefined, key: string): string | undefined => {
+const getNestedTranslation = (obj: Translations | undefined, key: string): any => {
     if (!obj) return undefined;
     return key.split('.').reduce((o: any, i: string) => (o && typeof o === 'object' ? o[i] : undefined), obj);
 };
 
 export const LocaleProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [locale, setLocaleState] = useState<Locale>(getInitialLocale());
-    const [translations, setTranslations] = useState<Record<Locale, Translations> | null>(null);
 
-    useEffect(() => {
-        // Use static imports so JSON is bundled and cannot return HTML in production
-        setTranslations({ 'en': enData as Translations, 'pt-PT': ptData as Translations });
-    }, []);
+    // Initialize translations synchronously so arrays/objects are available immediately
+    const [translations] = useState<Record<Locale, Translations>>({
+        'en': enData as Translations,
+        'pt-PT': ptData as Translations
+    });
 
     const setLocale = useCallback((newLocale: Locale) => {
         try {
@@ -50,12 +50,12 @@ export const LocaleProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         setLocaleState(newLocale);
     }, []);
 
-    const t = useCallback((key: string, replacements?: Record<string, string | number>): string => {
+    const t = useCallback((key: string, replacements?: Record<string, string | number>): any => {
         if (!translations) {
             return key;
         }
 
-        let translation = getNestedTranslation(translations[locale], key);
+        let translation: any = getNestedTranslation(translations[locale], key);
 
         if (translation === undefined) {
             translation = getNestedTranslation(translations['en'], key);
@@ -65,13 +65,15 @@ export const LocaleProvider: React.FC<{ children: ReactNode }> = ({ children }) 
             return key;
         }
 
+        // Only perform replacements for string translations
         if (typeof translation === 'string' && replacements) {
             Object.keys(replacements).forEach(rKey => {
                 const regex = new RegExp(`{{${rKey}}}`, 'g');
-                translation = (translation as string).replace(regex, String(replacements[rKey]));
+                translation = translation.replace(regex, String(replacements[rKey]));
             });
         }
-        return String(translation);
+
+        return translation;
     }, [locale, translations]);
 
     return (

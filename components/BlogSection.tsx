@@ -95,35 +95,35 @@ const BlogSection: React.FC<BlogSectionProps> = ({ posts, onSelectPost, isAdmin,
                 )}
             </div>
 
-            <div className="text-center mt-16 p-8 bg-gray-900/60 backdrop-blur-md rounded-lg border border-purple-500/30">
-                <h3 className="text-2xl font-bold text-white mb-4">{t('blog.inspirationTitle')}</h3>
-                <p className="text-gray-400 mb-6">{t('blog.inspirationSubtitle')}</p>
-                <button
-                    onClick={async () => {
-                        setIsLoading(true);
-                        setIdeas([]);
-                        const newIdeas = await generateBlogIdeas(t('prompts.blogIdeas'));
-                        setIdeas(newIdeas);
-                        setIsLoading(false);
-                    }}
-                    disabled={isLoading}
-                    className="bg-purple-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/30 flex items-center justify-center space-x-2 mx-auto disabled:opacity-50"
-                >
-                    {isLoading ? <LoadingSpinner/> : t('blog.generateIdeasButton')}
-                </button>
-                
-                {ideas.length > 0 && (
-                     <div className="mt-8 text-left">
-                        <ul className="list-disc list-inside space-y-2 text-gray-300">
-                           {ideas.map((idea, index) => (
-                               <li key={index} className="transition-opacity duration-500" style={{ animation: `fadeIn 0.5s ease-in-out ${index * 0.1}s both` }}>
-                                   {idea}
-                               </li>
-                           ))}
-                        </ul>
-                     </div>
-                )}
-            </div>
+            {/*<div className="text-center mt-16 p-8 bg-gray-900/60 backdrop-blur-md rounded-lg border border-purple-500/30">*/}
+            {/*    <h3 className="text-2xl font-bold text-white mb-4">{t('blog.inspirationTitle')}</h3>*/}
+            {/*    <p className="text-gray-400 mb-6">{t('blog.inspirationSubtitle')}</p>*/}
+            {/*    <button*/}
+            {/*        onClick={async () => {*/}
+            {/*            setIsLoading(true);*/}
+            {/*            setIdeas([]);*/}
+            {/*            const newIdeas = await generateBlogIdeas(t('prompts.blogIdeas'));*/}
+            {/*            setIdeas(newIdeas);*/}
+            {/*            setIsLoading(false);*/}
+            {/*        }}*/}
+            {/*        disabled={isLoading}*/}
+            {/*        className="bg-purple-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/30 flex items-center justify-center space-x-2 mx-auto disabled:opacity-50"*/}
+            {/*    >*/}
+            {/*        {isLoading ? <LoadingSpinner/> : t('blog.generateIdeasButton')}*/}
+            {/*    </button>*/}
+            {/*    */}
+            {/*    {ideas.length > 0 && (*/}
+            {/*         <div className="mt-8 text-left">*/}
+            {/*            <ul className="list-disc list-inside space-y-2 text-gray-300">*/}
+            {/*               {ideas.map((idea, index) => (*/}
+            {/*                   <li key={index} className="transition-opacity duration-500" style={{ animation: `fadeIn 0.5s ease-in-out ${index * 0.1}s both` }}>*/}
+            {/*                       {idea}*/}
+            {/*                   </li>*/}
+            {/*               ))}*/}
+            {/*            </ul>*/}
+            {/*         </div>*/}
+            {/*    )}*/}
+            {/*</div>*/}
              <style>{`
                 .tabular-nums { font-variant-numeric: tabular-nums; }
             `}</style>
