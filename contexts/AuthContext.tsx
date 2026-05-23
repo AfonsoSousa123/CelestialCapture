@@ -1,22 +1,40 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: string;
+}
 
 interface AuthContextType {
   isAdmin: boolean;
-  login: (username: string, password: string) => boolean;
+  user: User | null;
+  login: (emailOrUsername: string, password?: string) => Promise<boolean>;
+  register: (name: string, email: string) => Promise<boolean>;
   logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const ADMIN_SESSION_KEY = 'celestial-capture-admin-session';
+const USER_SESSION_KEY = 'celestial-capture-user-session';
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(() => {
     try {
       return localStorage.getItem(ADMIN_SESSION_KEY) === 'true';
     } catch (error) {
-      console.error("Could not access localStorage to check admin session", error);
       return false;
+    }
+  });
+
+  const [user, setUser] = useState<User | null>(() => {
+    try {
+      const stored = localStorage.getItem(USER_SESSION_KEY);
+      return stored ? JSON.parse(stored) : null;
+    } catch (error) {
+      return null;
     }
   });
 
@@ -24,33 +42,71 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const ADMIN_USERNAME = 'AfonsoAdmin';
   const ADMIN_PASSWORD = '12345678';
 
-  const login = (username: string, password: string): boolean => {
-    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+  const login = async (emailOrUsername: string, password?: string): Promise<boolean> => {
+    if (emailOrUsername === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       try {
         localStorage.setItem(ADMIN_SESSION_KEY, 'true');
         setIsAdmin(true);
         return true;
       } catch (error) {
-        console.error("Could not save admin session to localStorage", error);
-        // Still allow login for the current session even if localStorage fails
         setIsAdmin(true);
         return true;
       }
     }
-    return false;
+
+    // Regular user login
+    try {
+      const res = await fetch('/api/users/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: emailOrUsername }),
+      });
+      const data = await res.json();
+      if (res.ok && data.user) {
+        setUser(data.user);
+        localStorage.setItem(USER_SESSION_KEY, JSON.stringify(data.user));
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.error("Login error", err);
+      return false;
+    }
+  };
+
+  const register = async (name: string, email: string): Promise<boolean> => {
+    try {
+      const res = await fetch('/api/users/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email }),
+      });
+      const data = await res.json();
+      if (res.ok && data.user) {
+        setUser(data.user);
+        localStorage.setItem(USER_SESSION_KEY, JSON.stringify(data.user));
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.error("Registration error", err);
+      return false;
+    }
   };
 
   const logout = () => {
     try {
       localStorage.removeItem(ADMIN_SESSION_KEY);
+      localStorage.removeItem(USER_SESSION_KEY);
     } catch (error) {
-      console.error("Could not remove admin session from localStorage", error);
+      console.error(error);
     }
     setIsAdmin(false);
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isAdmin, login, logout }}>
+    <AuthContext.Provider value={{ isAdmin, user, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );

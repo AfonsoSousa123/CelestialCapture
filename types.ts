@@ -77,6 +77,18 @@ export interface Toast {
     type: 'success' | 'error';
 }
 
+export interface CelestialEvent {
+  name: string;
+  date: string;
+  description: string;
+  isoDate: string;
+  isoEndDate?: string;
+  startTime?: string;
+  endTime?: string;
+  location?: string;
+  emoji?: string;
+}
+
 export enum View {
   GALLERY = 'gallery',
   BLOG = 'blog',

@@ -4,13 +4,13 @@ import { useLocale } from '../contexts/LocaleContext';
 
 const MoonVisualizer: React.FC<{ phase: number }> = ({ phase }) => {
     const radius = 50;
-
+    
     // Normalize phase to [0, 1]
     const p = phase - Math.floor(phase);
-
+    
     // Determine Waxing (0-0.5) or Waning (0.5-1)
     const isWaxing = p <= 0.5;
-
+    
     // Determine Crescent (0-0.25 or 0.75-1) or Gibbous (0.25-0.75)
     const isCrescent = (p < 0.25) || (p > 0.75);
 
@@ -36,29 +36,29 @@ const MoonVisualizer: React.FC<{ phase: number }> = ({ phase }) => {
 
             {/* 1. Base Dark Circle */}
             <circle cx="50" cy="50" r="50" fill="url(#dark-surface)" />
-
+            
             {/* 2. Light Semi-Circle */}
             {/* Waxing: Right side (M 50 0 ... 50 100) */}
             {/* Waning: Left side (M 50 100 ... 50 0) */}
-            <path
+            <path 
                 d={isWaxing ? "M 50 0 A 50 50 0 0 1 50 100 Z" : "M 50 100 A 50 50 0 0 1 50 0 Z"}
                 fill="url(#light-surface)"
                 stroke="none"
             />
-
+            
             {/* 3. Terminator Ellipse Correction */}
-            {/*
+            {/* 
                Crescent: We have a light semi-circle, but need to cover the inner part with Dark to make it a crescent.
                Gibbous: We have a light semi-circle, and need to add Light to the other side to make it bulging.
             */}
-            <ellipse
-                cx="50"
-                cy="50"
-                rx={rx}
-                ry="50"
-                fill={isCrescent ? "url(#dark-surface)" : "url(#light-surface)"}
+            <ellipse 
+                cx="50" 
+                cy="50" 
+                rx={rx} 
+                ry="50" 
+                fill={isCrescent ? "url(#dark-surface)" : "url(#light-surface)"} 
             />
-
+            
             {/* Outer Glow/Ring */}
             <circle cx="50" cy="50" r="50" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"></circle>
         </svg>
@@ -111,26 +111,26 @@ const MoonPhase: React.FC = () => {
             description: t(`moon.conditions.${moonInfo.ratingKey}.astrophotography.description`)
         }
     };
-
+    
     const formatNextPhaseDate = (date: Date) => {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         const tomorrow = new Date(today);
         tomorrow.setDate(today.getDate() + 1);
-
+        
         const targetDate = new Date(date);
         targetDate.setHours(0, 0, 0, 0);
 
-        const diffTime = targetDate.getTime() - today.getTime(); // Difference in milliseconds
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Difference in days
+        const diffTime = targetDate.getTime() - today.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
         if (targetDate.getTime() === today.getTime()) return t('moon.tonight');
         if (targetDate.getTime() === tomorrow.getTime()) return t('moon.tomorrow');
-
+        
         if (diffDays > 1 && diffDays <= 7) {
             return t('moon.inDays', { count: diffDays });
         }
-
+        
         return t('moon.onDate', { date: date.toLocaleDateString(locale, { month: 'short', day: 'numeric' }) });
     };
 

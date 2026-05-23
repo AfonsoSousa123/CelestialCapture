@@ -5,6 +5,7 @@ import LoadingSpinner from './LoadingSpinner';
 import { useLocale } from '../contexts/LocaleContext';
 import { fileToDataUrl } from '../utils/fileUtils';
 import { readExifData } from '../utils/exifReader';
+import { useAuth } from '../contexts/AuthContext';
 
 interface GalleryProps {
   photos: Photo[];
@@ -15,7 +16,10 @@ interface GalleryProps {
 
 const Gallery: React.FC<GalleryProps> = ({ photos, onSelectPhoto, onAddPhoto, isAdmin }) => {
     const { t } = useLocale();
+    const { user } = useAuth();
+    const isUploadCapable = isAdmin || !!user;
     const [uploadPreview, setUploadPreview] = useState<{ url: string; name: string } | null>(null);
+    const [isUploading, setIsUploading] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
     const photoRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -90,6 +94,7 @@ const Gallery: React.FC<GalleryProps> = ({ photos, onSelectPhoto, onAddPhoto, is
 
         const previewUrl = URL.createObjectURL(file);
         setUploadPreview({ url: previewUrl, name: file.name });
+        setIsUploading(true);
 
         try {
             const dataUrl = await fileToDataUrl(file);
@@ -127,12 +132,33 @@ const Gallery: React.FC<GalleryProps> = ({ photos, onSelectPhoto, onAddPhoto, is
                 exposureTime: exifData.exposureTime,
             };
 
+            // Call API to upload photo to Postgres DB
+            if (user) {
+              const res = await fetch('/api/photos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  url: dataUrl,
+                  title: newPhoto.title,
+                  description: newPhoto.description,
+                  userId: user.id
+                })
+              });
+              if (res.ok) {
+                const data = await res.json();
+                if (data.photo) {
+                  newPhoto.id = data.photo.id;
+                }
+              }
+            }
+
             onAddPhoto(newPhoto);
         } catch (error) {
             console.error("Error processing file:", error);
             alert(t('gallery.uploadError'));
         } finally {
             setUploadPreview(null);
+            setIsUploading(false);
             URL.revokeObjectURL(previewUrl);
             if (fileInputRef.current) {
                 fileInputRef.current.value = "";
@@ -185,12 +211,12 @@ const Gallery: React.FC<GalleryProps> = ({ photos, onSelectPhoto, onAddPhoto, is
   return (
     <section 
         className="relative"
-        onDragEnter={isAdmin ? handleDragEnter : undefined}
-        onDragLeave={isAdmin ? handleDragLeave : undefined}
-        onDragOver={isAdmin ? handleDragOver : undefined}
-        onDrop={isAdmin ? handleDrop : undefined}
+        onDragEnter={isUploadCapable ? handleDragEnter : undefined}
+        onDragLeave={isUploadCapable ? handleDragLeave : undefined}
+        onDragOver={isUploadCapable ? handleDragOver : undefined}
+        onDrop={isUploadCapable ? handleDrop : undefined}
     >
-       {isAdmin && isDraggingOver && (
+       {isUploadCapable && isDraggingOver && (
             <div className="absolute inset-0 bg-gray-900/80 backdrop-blur-sm border-4 border-dashed border-purple-500 rounded-2xl flex flex-col items-center justify-center z-10 pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-purple-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -199,7 +225,7 @@ const Gallery: React.FC<GalleryProps> = ({ photos, onSelectPhoto, onAddPhoto, is
                 <p className="text-gray-400">{t('gallery.dropzone.subtitle')}</p>
             </div>
         )}
-       {isAdmin && (
+       {isUploadCapable && (
         <div className="flex flex-col items-center mb-8">
             <input
                 type="file"
@@ -210,14 +236,19 @@ const Gallery: React.FC<GalleryProps> = ({ photos, onSelectPhoto, onAddPhoto, is
             />
             <button 
                 onClick={handleAddPhotoClick}
-                className="bg-purple-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/30 flex items-center space-x-2"
+                disabled={isUploading}
+                className={`bg-purple-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-purple-700 transition-all duration-300 shadow-lg shadow-purple-500/30 flex items-center space-x-2 ${isUploading ? 'opacity-50 cursor-not-allowed' : 'transform hover:scale-105'}`}
             >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                </svg>
-                <span>{t('gallery.uploadButton')}</span>
+                {isUploading ? (
+                    <div className="w-6 h-6 border-2 border-white border-t-transparent flex-shrink-0 animate-spin rounded-full"></div>
+                ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                )}
+                <span>{isUploading ? t('gallery.processing') : t('gallery.uploadButton')}</span>
             </button>
-            {uploadPreview && (
+            {isUploading && uploadPreview && (
                 <div className="mt-4 p-3 bg-gray-800 rounded-lg w-full max-w-xs flex items-center space-x-4 animate-fadeIn shadow-md">
                     <img src={uploadPreview.url} alt="Upload preview" className="w-16 h-16 object-cover rounded-md flex-shrink-0" />
                     <div className="flex-1 min-w-0">

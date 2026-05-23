@@ -207,7 +207,10 @@ const PhotoDetailModal: React.FC<PhotoDetailModalProps> = ({
   return (
     <>
       <Modal
-        onClose={onClose}
+        onClose={() => {
+          if (showConfirmDelete || isFullscreen) return;
+          onClose();
+        }}
         ariaLabelledBy="photo-title"
         containerClassName="bg-gray-900/80 backdrop-blur-lg rounded-lg shadow-2xl shadow-purple-500/20 w-full max-w-6xl max-h-[90vh] flex flex-col md:flex-row overflow-hidden"
       >

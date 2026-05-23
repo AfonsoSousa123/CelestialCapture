@@ -33,7 +33,7 @@ const NavLink: React.FC<{
 };
 
 const Header: React.FC<HeaderProps> = ({ currentView, setCurrentView, onLoginClick }) => {
-  const { isAdmin, logout } = useAuth();
+  const { isAdmin, user, logout } = useAuth();
   const { t } = useLocale();
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -96,19 +96,24 @@ const Header: React.FC<HeaderProps> = ({ currentView, setCurrentView, onLoginCli
               {t('header.blog')}
             </NavLink>
             <div className="h-6 w-px bg-gray-600"></div>
-            {isAdmin ? (
-              <button
-                onClick={() => setIsLogoutModalOpen(true)}
-                className="px-4 py-2 text-lg font-medium rounded-md transition-colors duration-300 text-gray-300 hover:bg-red-700 hover:text-white"
-              >
-                {t('header.logout')}
-              </button>
+            {isAdmin || user ? (
+              <div className="flex items-center space-x-4">
+                <span className="text-purple-300 font-medium">
+                  {isAdmin ? 'Admin' : `Hi, ${user?.name}`}
+                </span>
+                <button
+                  onClick={() => setIsLogoutModalOpen(true)}
+                  className="px-4 py-2 text-lg font-medium rounded-md transition-colors duration-300 text-gray-300 hover:bg-red-700 hover:text-white"
+                >
+                  {t('header.logout')}
+                </button>
+              </div>
             ) : (
               <button
                 onClick={onLoginClick}
                 className="px-4 py-2 text-lg font-medium rounded-md transition-colors duration-300 text-gray-300 hover:bg-gray-700 hover:text-white"
               >
-                {t('header.adminLogin')}
+                Log In / Sign Up
               </button>
             )}
             <LanguageSwitcher />
@@ -153,19 +158,24 @@ const Header: React.FC<HeaderProps> = ({ currentView, setCurrentView, onLoginCli
             
             <hr className="border-gray-700" />
 
-            {isAdmin ? (
-                <button
-                    onClick={createAdminHandler(() => setIsLogoutModalOpen(true))}
-                    className="w-full text-left px-4 py-3 text-lg font-medium rounded-md transition-colors duration-300 text-gray-300 hover:bg-red-700 hover:text-white"
-                >
-                    {t('header.logout')}
-                </button>
+            {isAdmin || user ? (
+                <>
+                  <span className="text-purple-300 px-4 font-medium">
+                    {isAdmin ? 'Admin' : `Hi, ${user?.name}`}
+                  </span>
+                  <button
+                      onClick={createAdminHandler(() => setIsLogoutModalOpen(true))}
+                      className="w-full text-left px-4 py-3 text-lg font-medium rounded-md transition-colors duration-300 text-gray-300 hover:bg-red-700 hover:text-white"
+                  >
+                      {t('header.logout')}
+                  </button>
+                </>
             ) : (
                 <button
                     onClick={createAdminHandler(onLoginClick)}
                     className="w-full text-left px-4 py-3 text-lg font-medium rounded-md transition-colors duration-300 text-gray-300 hover:bg-gray-700 hover:text-white"
                 >
-                    {t('header.adminLogin')}
+                    Log In / Sign Up
                 </button>
             )}
             

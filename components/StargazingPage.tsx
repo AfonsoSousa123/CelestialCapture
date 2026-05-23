@@ -10,6 +10,7 @@ import TipsSection from './TipsSection';
 
 const StargazingPage: React.FC = () => {
     const { t } = useLocale();
+
     return (
         <div
             className="bg-cover bg-center bg-fixed"
@@ -31,14 +32,14 @@ const StargazingPage: React.FC = () => {
                                 <MoonPhase />
                             </div>
 
-                            {/* Dashboard Section - Now stacked for better spacing */}
+                            {/* Dashboard Section */}
                             <div className="grid grid-cols-1 gap-16 items-stretch">
                                 <BortleScaleMeter />
                                 <MilkyWayGuide />
                             </div>
                             
-                            {/* Full-width sections */}
                             <CelestialEvents />
+
                             <WhatsUpTonight />
                             <TipsSection />
                             <InteractiveTelescope />

@@ -10,19 +10,19 @@ const TipCard: React.FC<{ icon: string; title: string; description: string }> = 
 );
 
 const AstrophotographyTips: React.FC = () => {
-    const { t } = useLocale();
-    const tipsData = t('astrophotographyTips.tips');
-    const tips = Array.isArray(tipsData) ? tipsData as { icon: string; title: string; description: string }[] : [];
+  const { t } = useLocale();
+  const tipsData = t('astrophotographyTips.tips');
+  const tips = Array.isArray(tipsData) ? tipsData as { icon: string; title: string; description: string }[] : [];
 
-    return (
-        <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {tips.map((tip) => (
-                    <TipCard key={tip.title} {...tip} />
-                ))}
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {tips.map((tip) => (
+          <TipCard key={tip.title} {...tip} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default AstrophotographyTips;

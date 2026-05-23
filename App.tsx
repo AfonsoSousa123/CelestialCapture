@@ -53,9 +53,35 @@ const App: React.FC = () => {
 
   // Update data when locale changes
   useEffect(() => {
-    setPhotos(photosData[locale]);
-    setBlogPosts(blogPostsData[locale]);
-    setComments(commentsData[locale]);
+    const defaultPhotos = photosData[locale] || [];
+    setBlogPosts(blogPostsData[locale] || []);
+    setComments(commentsData[locale] || []);
+    // Fetch photos from DB
+    fetch('/api/photos')
+      .then(res => res.json())
+      .then(data => {
+        if (data.photos) {
+          // Format DB photos to match Photo interface
+          const dbPhotos: Photo[] = data.photos.map((dbPhoto: any) => ({
+            id: dbPhoto.id,
+            url: dbPhoto.url,
+            urls: { small: dbPhoto.url, medium: dbPhoto.url, large: dbPhoto.url },
+            title: dbPhoto.title,
+            description: dbPhoto.description || '',
+            date: new Date(dbPhoto.createdAt).toISOString().split('T')[0],
+            tags: ['User Upload'],
+            rating: 0
+          }));
+          setPhotos([...dbPhotos, ...defaultPhotos]);
+        } else {
+          setPhotos(defaultPhotos);
+        }
+      })
+      .catch(err => {
+        console.error('Failed to fetch DB photos', err);
+        setPhotos(defaultPhotos);
+      });
+    
     // Selections are reset, but filters (search, tags, rating) are now persistent.
     setSelectedPhoto(null);
     setSelectedPost(null);
@@ -93,18 +119,40 @@ const App: React.FC = () => {
     };
   }, [selectedPhoto, isLoginModalOpen, isAddPostModalOpen]);
 
-  const handleUpdatePhoto = (photoId: string, updates: Partial<Photo>) => {
+  const handleUpdatePhoto = async (photoId: string, updates: Partial<Photo>) => {
+    // Optimistic UI update
     setPhotos(prevPhotos =>
       prevPhotos.map(p => (p.id === photoId ? { ...p, ...updates } : p))
     );
     if (selectedPhoto?.id === photoId) {
       setSelectedPhoto(prev => prev ? { ...prev, ...updates } : null);
     }
+    
+    try {
+      await fetch(`/api/photos/${photoId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: updates.title,
+          description: updates.description
+        })
+      });
+    } catch (error) {
+      console.error("Failed to update photo in DB", error);
+    }
   };
   
-  const handleDeletePhoto = (photoId: string) => {
+  const handleDeletePhoto = async (photoId: string) => {
     setPhotos(prevPhotos => prevPhotos.filter(p => p.id !== photoId));
     setSelectedPhoto(null);
+    
+    try {
+      await fetch(`/api/photos/${photoId}`, {
+        method: 'DELETE'
+      });
+    } catch (error) {
+      console.error("Failed to delete photo in DB", error);
+    }
   };
 
   const handleAddPhoto = (newPhoto: Photo) => {
@@ -273,50 +321,51 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <StarryBackground />
-      <Header
-        currentView={currentView}
-        setCurrentView={setCurrentView}
-        onLoginClick={() => setIsLoginModalOpen(true)}
-      />
-      
-      <main className="flex-grow">
-        <div key={`${currentView}-${locale}`} className="animate-view-change">
-          {renderContent()}
-        </div>
-      </main>
-
-      <Footer />
-      <CosmosChatbot />
-      {(currentView === View.GALLERY || currentView === View.BLOG || currentView === View.STARGAZING) && <ScrollToTopButton />}
-      <ToastContainer />
-
-
-      <Suspense fallback={<div />}>
-        {selectedPhoto && (
-          <PhotoDetailModal
-            photo={selectedPhoto}
-            allPhotos={sortedAndFilteredPhotos}
-            onClose={() => setSelectedPhoto(null)}
-            onUpdatePhoto={handleUpdatePhoto}
-            onDeletePhoto={handleDeletePhoto}
-            onNavigate={(nextPhoto) => setSelectedPhoto(nextPhoto)}
-            isAdmin={isAdmin}
-            onSetPhotoOfTheWeek={setPhotoOfTheWeekId}
-          />
-        )}
-
-        {isLoginModalOpen && <LoginModal onClose={() => setIsLoginModalOpen(false)} />}
+    <StarryBackground>
+      <div className="flex flex-col min-h-screen">
+        <Header
+          currentView={currentView}
+          setCurrentView={setCurrentView}
+          onLoginClick={() => setIsLoginModalOpen(true)}
+        />
         
-        {isAddPostModalOpen && (
-          <AddPostModal 
-              onClose={() => setIsAddPostModalOpen(false)}
-              onAddPost={handleAddPost}
-          />
-        )}
-      </Suspense>
-    </div>
+        <main className="flex-grow">
+          <div key={`${currentView}-${locale}`} className="animate-view-change">
+            {renderContent()}
+          </div>
+        </main>
+
+        <Footer />
+        <CosmosChatbot />
+        {(currentView === View.GALLERY || currentView === View.BLOG || currentView === View.STARGAZING) && <ScrollToTopButton />}
+        <ToastContainer />
+
+
+        <Suspense fallback={<div />}>
+          {selectedPhoto && (
+            <PhotoDetailModal
+              photo={selectedPhoto}
+              allPhotos={sortedAndFilteredPhotos}
+              onClose={() => setSelectedPhoto(null)}
+              onUpdatePhoto={handleUpdatePhoto}
+              onDeletePhoto={handleDeletePhoto}
+              onNavigate={(nextPhoto) => setSelectedPhoto(nextPhoto)}
+              isAdmin={isAdmin}
+              onSetPhotoOfTheWeek={setPhotoOfTheWeekId}
+            />
+          )}
+
+          {isLoginModalOpen && <LoginModal onClose={() => setIsLoginModalOpen(false)} />}
+          
+          {isAddPostModalOpen && (
+            <AddPostModal 
+                onClose={() => setIsAddPostModalOpen(false)}
+                onAddPost={handleAddPost}
+            />
+          )}
+        </Suspense>
+      </div>
+    </StarryBackground>
   );
 };
 

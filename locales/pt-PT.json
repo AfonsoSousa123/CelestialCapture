@@ -306,7 +306,10 @@
     "title": "Próximos Eventos Celestiais",
     "loading": "A vasculhar o cosmos por eventos futuros...",
     "error": "Não foi possível obter os eventos celestiais. O cosmos está em silêncio por agora.",
-    "noEvents": "Nenhum evento celestial importante encontrado de momento. Volte mais tarde!"
+    "noEvents": "Nenhum evento celestial importante encontrado de momento. Volte mais tarde!",
+    "addToCalendar": "Adicionar ao Google Calendar",
+    "addToCalendarTooltip": "Adicionar este evento ao Google Calendar",
+    "addToCalendarAriaLabel": "Adicionar este evento ao Google Calendar"
   },
   "stargazingTips": {
     "title": "Dicas para a Melhor Experiência",

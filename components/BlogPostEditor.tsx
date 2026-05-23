@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useLocale } from '../contexts/LocaleContext';
 import { fileToDataUrl } from '../utils/fileUtils';
+import LoadingSpinner from './LoadingSpinner';
 
 interface BlogPostEditorProps {
   initialContent: string;
   initialImageUrl: string;
-  onSave: (updates: { content: string; imageUrl: string }) => void;
+  onSave: (updates: { content: string; imageUrl: string }) => void | Promise<void>;
   onCancel: () => void;
 }
 
@@ -28,6 +29,7 @@ const BlogPostEditor: React.FC<BlogPostEditorProps> = ({ initialContent, initial
   const [imageUrl, setImageUrl] = useState(initialImageUrl);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -71,17 +73,22 @@ const BlogPostEditor: React.FC<BlogPostEditorProps> = ({ initialContent, initial
 
   const handleSave = async () => {
     if (editorRef.current) {
-      const finalContent = editorRef.current.innerHTML;
-      
-      let finalImageUrl = imageUrl.trim();
-      if (imageSource === 'upload' && imageFile) {
-        finalImageUrl = await fileToDataUrl(imageFile);
-      }
+      setIsSaving(true);
+      try {
+        const finalContent = editorRef.current.innerHTML;
+        
+        let finalImageUrl = imageUrl.trim();
+        if (imageSource === 'upload' && imageFile) {
+          finalImageUrl = await fileToDataUrl(imageFile);
+        }
 
-      onSave({ 
-        content: finalContent, 
-        imageUrl: finalImageUrl || initialImageUrl
-      });
+        await onSave({ 
+          content: finalContent, 
+          imageUrl: finalImageUrl || initialImageUrl
+        });
+      } finally {
+        setIsSaving(false);
+      }
     }
   };
 
@@ -146,14 +153,17 @@ const BlogPostEditor: React.FC<BlogPostEditorProps> = ({ initialContent, initial
       <div className="flex justify-end p-2 border-t border-gray-700 space-x-3">
         <button
           onClick={onCancel}
-          className="px-4 py-2 rounded-md bg-gray-600 text-white font-semibold hover:bg-gray-700 transition-colors"
+          disabled={isSaving}
+          className="px-4 py-2 rounded-md bg-gray-600 text-white font-semibold hover:bg-gray-700 transition-colors disabled:opacity-50"
         >
           {t('editor.cancel')}
         </button>
         <button
           onClick={handleSave}
-          className="px-4 py-2 rounded-md bg-purple-600 text-white font-semibold hover:bg-purple-700 transition-colors"
+          disabled={isSaving}
+          className="px-4 py-2 rounded-md bg-purple-600 text-white font-semibold hover:bg-purple-700 transition-colors disabled:opacity-50 flex items-center gap-2"
         >
+          {isSaving && <LoadingSpinner />}
           {t('editor.save')}
         </button>
       </div>

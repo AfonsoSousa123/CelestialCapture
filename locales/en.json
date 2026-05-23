@@ -306,7 +306,10 @@
     "title": "Upcoming Celestial Events",
     "loading": "Scanning the cosmos for upcoming events...",
     "error": "Could not fetch celestial events. The cosmos is silent for now.",
-    "noEvents": "No major celestial events found at this time. Check back later!"
+    "noEvents": "No major celestial events found at this time. Check back later!",
+    "addToCalendar": "Add to Google Calendar",
+    "addToCalendarTooltip": "Add this event to Google Calendar",
+    "addToCalendarAriaLabel": "Add this event to Google Calendar"
   },
   "stargazingTips": {
     "title": "Tips for the Best Experience",

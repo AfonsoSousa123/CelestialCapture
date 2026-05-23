@@ -6,13 +6,18 @@ const shadowsMedium = '1504px 1475px #FFF, 938px 1488px #FFF, 1668px 1403px #FFF
 const shadowsLarge = '1454px 1589px #FFF, 1545px 1138px #FFF, 933px 132px #FFF, 1537px 1159px #FFF, 1751px 1630px #FFF';
 
 
-const StarryBackground: React.FC = () => {
+interface StarryBackgroundProps {
+    children?: React.ReactNode;
+}
+
+const StarryBackground: React.FC<StarryBackgroundProps> = ({ children }) => {
     return (
-        <div className="fixed inset-0 z-[-1] overflow-hidden bg-[#0c0a18]">
-            <div id="stars1" className="stars"></div>
-            <div id="stars2" className="stars"></div>
-            <div id="stars3" className="stars"></div>
-            <style>{`
+        <div className="relative min-h-screen w-full">
+            <div className="fixed inset-0 z-[-1] overflow-hidden bg-[#0c0a18]">
+                <div id="stars1" className="stars"></div>
+                <div id="stars2" className="stars"></div>
+                <div id="stars3" className="stars"></div>
+                <style>{`
                 .stars {
                   position: absolute;
                   top: 0;
@@ -51,6 +56,8 @@ const StarryBackground: React.FC = () => {
                   }
                 }
             `}</style>
+            </div>
+            {children}
         </div>
     );
 };
