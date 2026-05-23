@@ -1,4 +1,6 @@
 import { defineConfig } from 'drizzle-kit';
+import dotenv from 'dotenv';
+dotenv.config({ path: ['.env.local', '.env'] });
 
 const url = process.env.DATABASE_URL || 'postgresql://user:password@localhost:5432/celestial';
 

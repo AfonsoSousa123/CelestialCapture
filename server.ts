@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config({ path: [".env.local", ".env"] });
+
 import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
@@ -40,7 +43,7 @@ async function startServer() {
     try {
       const { email } = req.body;
       if (!email) return res.status(400).json({ error: "Email is required" });
-      
+
       const userList = await db.select().from(users).where(eq(users.email, email));
       const user = userList[0] || null;
       if (!user) {
@@ -72,18 +75,18 @@ async function startServer() {
     try {
       const { id } = req.params;
       const { title, description } = req.body;
-      
+
       if (!title) {
         return res.status(400).json({ error: "Title is required" });
       }
-      
+
       const [updatedPhoto] = await db.update(photos)
-        .set({ title, description })
-        .where(eq(photos.id, id))
-        .returning();
-        
+          .set({ title, description })
+          .where(eq(photos.id, id))
+          .returning();
+
       if (!updatedPhoto) {
-         return res.status(404).json({ error: "Photo not found" });
+        return res.status(404).json({ error: "Photo not found" });
       }
 
       res.json({ photo: updatedPhoto });
@@ -92,23 +95,23 @@ async function startServer() {
       res.status(500).json({ error: "Server error" });
     }
   });
-  
+
   app.delete("/api/photos/:id", async (req, res) => {
     try {
       const { id } = req.params;
-      
+
       const [deletedPhoto] = await db.delete(photos)
-        .where(eq(photos.id, id))
-        .returning();
-        
+          .where(eq(photos.id, id))
+          .returning();
+
       if (!deletedPhoto) {
         return res.status(404).json({ error: "Photo not found" });
       }
 
       res.json({ success: true, photo: deletedPhoto });
     } catch (error) {
-       console.error("Photo delete error:", error);
-       res.status(500).json({ error: "Server error" });
+      console.error("Photo delete error:", error);
+      res.status(500).json({ error: "Server error" });
     }
   });
 
